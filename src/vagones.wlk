@@ -53,7 +53,62 @@ class VagonDePasajeros {
 	method pesoMaximo() {
 		return (self.capacidadPasajeros() * 80) + self.capacidadCarga() + 2000   
 	}
-	
-	
-	
 }
+
+class VagonDeCarga {
+	var cargaMaxima
+	var maderasSueltas 
+	
+	method setCargaMaxima(cuanto) {
+		cargaMaxima = cuanto
+	}
+	method setMaderasSueltas(cuantas) {
+		maderasSueltas = cuantas
+	}
+	method cargaMaxima() {
+		return cargaMaxima - (maderasSueltas * 400)
+	}
+	method maderasSueltas() {
+		return maderasSueltas
+	}
+	method pesoMaximo() {
+		return self.cargaMaxima() + 1500
+	}
+}
+
+class VagonesDormitorio {
+	var compartimientos
+	var camas
+	
+	method setCompartimientos(cuantos) {
+		compartimientos = cuantos
+	}
+	method setCamas(cuantas) {
+		camas = cuantas
+	}
+	method compartimientos() {
+		return compartimientos
+	}
+	method camasPorCompartimiento() {
+		return camas
+	}
+	method capacidadPasajeros() {
+		return compartimientos * camas
+	}
+	method tieneBanio() {
+		return true
+	}
+	method cargaMaxima() {
+		return 1200
+	}
+	method pesoMaximo() {
+		return 4000 + self.cargaMaxima() + (80 * self.capacidadPasajeros())				
+	}
+}	
+	
+	
+	
+	
+	
+	
+	
