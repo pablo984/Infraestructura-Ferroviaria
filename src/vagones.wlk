@@ -42,7 +42,7 @@ class VagonDePasajeros {
 			return 10 * largo - 15
 		}
 	}
-	method capacidadCarga() {
+	method cargaMaxima() {
 		if (tieneBanio) {
 			return 300
 		}
@@ -51,7 +51,7 @@ class VagonDePasajeros {
 		}
 	}
 	method pesoMaximo() {
-		return (self.capacidadPasajeros() * 80) + self.capacidadCarga() + 2000   
+		return (self.capacidadPasajeros() * 80) + self.cargaMaxima() + 2000   
 	}
 }
 
