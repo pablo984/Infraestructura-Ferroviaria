@@ -76,7 +76,7 @@ class VagonDeCarga {
 	}
 }
 
-class VagonesDormitorio {
+class VagonDormitorio {
 	var compartimientos
 	var camas
 	

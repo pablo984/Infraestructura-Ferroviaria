@@ -3,8 +3,11 @@ import vagones.*
 class Formacion {
 	const vagones = []
 	
-	method agregarVagones(trenes) {
-		vagones.addAll(trenes)
+	method agregarVagon(unVagon) {
+		vagones.add(unVagon)
+	}
+	method agregarVagones(variosVagones) {
+		vagones.addAll(variosVagones)
 	}
 	method vagones() {
 		return vagones
