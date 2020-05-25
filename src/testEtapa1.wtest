@@ -1,5 +1,5 @@
 import vagones.*
-import formacion.*
+import deposito.*
 
 test "Primera Formación" {
 	/*Instancias de las clases */
@@ -27,7 +27,7 @@ test "Primera Formación" {
 	dormitorio1.setCompartimientos(8)
 	dormitorio1.setCamas(3)
 	
-	/*Agregado de vagones a la formación */
+	/*Agregado de vagones a la primera formación */
 	formacion1.agregarVagones([pasajeros1, pasajeros2, carga1, dormitorio1])
 	
 	/*Test a los vagones */
@@ -51,21 +51,57 @@ test "Primera Formación" {
 	assert.notThat(carga1.tieneBanio())
 	assert.that(dormitorio1.tieneBanio())
 	
-	/*Test a la formación antes del mantenimiento*/
+	/*Test a la primera formación antes del mantenimiento*/
 	assert.equals(165, formacion1.capacidadMaxDePasajeros())
 	assert.equals(1, formacion1.vagonesPopulares())
 	assert.notThat(formacion1.esFormacionCarguera())
 	assert.equals(4220, formacion1.dispersionDePesos())
 	assert.equals(2, formacion1.cantidadDeBanios())
 	
-	/*Test a la formación después del mantenimiento */
+	/*Test a la primera formación después del mantenimiento */
 	formacion1.mantenimiento()
 	
 	assert.equals(180, formacion1.capacidadMaxDePasajeros())
 	assert.equals(2, formacion1.vagonesPopulares())
 	assert.notThat(formacion1.esFormacionCarguera())
-	assert.equals(4000, formacion1.dispersionDePesos())
+	assert.equals(3200, formacion1.dispersionDePesos())
 	assert.equals(2, formacion1.cantidadDeBanios())
+	
+	/*Instancias de las clases*/
+	const formacion2 = new Formacion()
+	
+	const carga2 = new VagonDeCarga()
+	
+	const dormitorio2 = new VagonDormitorio()
+	
+	/*Configuración de las instancias de las clases */
+	carga2.setCargaMaxima(8000)
+	carga2.setMaderasSueltas(1)
+	
+	dormitorio2.setCompartimientos(15)
+	dormitorio2.setCamas(4)
+	
+	/*Agregado de vagones a la segunda formación */
+	formacion2.agregarVagones([carga2, dormitorio2])
+	
+	/*Test a la segunda formación antes del mantenimiento */
+	assert.equals(60, formacion2.capacidadMaxDePasajeros())
+	assert.equals(1, formacion2.vagonesPopulares())
+	assert.that(formacion2.esFormacionCarguera())
+	assert.equals(900, formacion2.dispersionDePesos())
+	assert.equals(1, formacion2.cantidadDeBanios())
+	
+	/*Test a la segunda formación después del mantenimiento */
+	formacion2.mantenimiento()
+	
+	assert.equals(60, formacion2.capacidadMaxDePasajeros())
+	assert.equals(1, formacion2.vagonesPopulares())
+	assert.that(formacion2.esFormacionCarguera())
+	assert.equals(500, formacion2.dispersionDePesos())
+	assert.equals(1, formacion2.cantidadDeBanios())
+	
+	
+	
 	
 	
 	

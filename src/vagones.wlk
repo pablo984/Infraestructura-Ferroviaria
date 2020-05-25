@@ -91,7 +91,7 @@ class VagonDeCarga {
 		return self.cargaMaxima() + 1500
 	}
 	method mantener() {
-		0.max(maderasSueltas -2)
+		maderasSueltas = 0.max(maderasSueltas -2)
 	}
 	method esDePasajeros() {
 		return false

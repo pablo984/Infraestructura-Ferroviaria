@@ -1,0 +1,73 @@
+import vagones.*
+import deposito.*
+
+
+test "Primera formación, test parte 2" {
+	/*Instancias de las clases */
+	const formacion1 = new Formacion()
+	
+	const pasajeros1 = new VagonDePasajeros()
+	const pasajeros2 = new VagonDePasajeros()
+	
+	const carga1 = new VagonDeCarga()
+	
+	const dormitorio1 = new VagonDormitorio()
+	
+	/*Configuración de las instancias de las clases */
+	pasajeros1.setLargo(10)
+	pasajeros1.setAncho(4)
+	
+	pasajeros2.setLargo(7)
+	pasajeros2.setAncho(2)
+	pasajeros2.setTieneBanio()
+	pasajeros2.setOrdenar()
+	
+	carga1.setCargaMaxima(6800)
+	carga1.setMaderasSueltas(5)
+	
+	dormitorio1.setCompartimientos(8)
+	dormitorio1.setCamas(3)
+	
+	/*Agregado de vagones a la primera formación */
+	formacion1.agregarVagones([pasajeros1, pasajeros2, carga1, dormitorio1])
+	
+	/*Test a la primera formación antes del mantenimiento*/
+	assert.equals(29800, formacion1.pesoMaximoDeLaFormacion())
+	
+	/*Instancias de la clase Locomotora */
+	const locomotora1 = new Locomotora()
+	const locomotora2 = new Locomotora()
+	
+	/*Configuración de las instancias de las clases */
+	locomotora1.setPeso(3000)
+	locomotora1.setArrastre(20000)
+	locomotora1.setVelocidad(100)
+	
+	locomotora2.setPeso(5000)
+	locomotora2.setArrastre(22000)
+	locomotora2.setVelocidad(130)
+	
+	/*Agregado de la locomotora a la formación 1 */
+	formacion1.agregarLocomotora(locomotora1)
+	
+	/*Test a la formación con una sola locomotora */
+	assert.that(formacion1.esEficiente())
+	assert.notThat(formacion1.puedeMoverse())
+	assert.equals(12800, formacion1.kilosDeEmpujeQueFaltan())
+	
+	/*Agregado de la locomotora 2 a la formación 1 */
+	formacion1.agregarLocomotora(locomotora2)
+	
+	/*Test a la formación con 2 locomotoras */
+	assert.notThat(formacion1.esEficiente())
+	assert.that(formacion1.puedeMoverse())
+	assert.equals(0, formacion1.kilosDeEmpujeQueFaltan())
+	
+	
+	
+	
+	
+	
+	
+
+}
