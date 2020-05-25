@@ -6,6 +6,9 @@ class Formacion {
 	method agregarVagon(unVagon) {
 		vagones.add(unVagon)
 	}
+	method quitarVagon(unVagon) {
+		vagones.remove(unVagon)
+	}
 	method agregarVagones(variosVagones) {
 		vagones.addAll(variosVagones)
 	}
@@ -19,7 +22,7 @@ class Formacion {
 		return vagones.filter({ v => v.capacidadPasajeros() > 50 }).size()
 	}
 	method esFormacionCarguera() {
-		return vagones.sum({ v => v.cargaMaxima() }) >= 1000
+		return vagones.all({ v => v.cargaMaxima() >= 1000 }) 
 	}
 	method dispersionDePesos() {
 		return vagones.max({ v => v.pesoMaximo() }).pesoMaximo() - 
@@ -28,5 +31,15 @@ class Formacion {
 	method cantidadDeBanios() {
 		return vagones.count({ v => v.tieneBanio() })
 	}
-	
+	method mantenimiento() {
+		vagones.forEach({ v => v.mantener() })
+	}
+	method estaEquilibrada() {
+		return vagones.max({ v => v.capacidadPasajeros() }).capacidadPasajeros() -
+		       vagones.min({ v => v.capacidadPasajeros() }).capacidadPasajeros() <= 20
+	}
+	/*Este método no está bien, sólo esta bien parcialmente */
+	method estaOrganizada() {
+		return vagones.all({ v => v.esDePasajeros() }) or vagones.all({ v => not v.esDePasajeros() })
+	}
 }

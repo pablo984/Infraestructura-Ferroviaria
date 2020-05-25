@@ -1,0 +1,76 @@
+import vagones.*
+import formacion.*
+
+test "Primera Formación" {
+	/*Instancias de las clases */
+	const formacion1 = new Formacion()
+	
+	const pasajeros1 = new VagonDePasajeros()
+	const pasajeros2 = new VagonDePasajeros()
+	
+	const carga1 = new VagonDeCarga()
+	
+	const dormitorio1 = new VagonDormitorio()
+	
+	/*Configuración de las instancias de las clases */
+	pasajeros1.setLargo(10)
+	pasajeros1.setAncho(4)
+	
+	pasajeros2.setLargo(7)
+	pasajeros2.setAncho(2)
+	pasajeros2.setTieneBanio()
+	pasajeros2.setOrdenar()
+	
+	carga1.setCargaMaxima(6800)
+	carga1.setMaderasSueltas(5)
+	
+	dormitorio1.setCompartimientos(8)
+	dormitorio1.setCamas(3)
+	
+	/*Agregado de vagones a la formación */
+	formacion1.agregarVagones([pasajeros1, pasajeros2, carga1, dormitorio1])
+	
+	/*Test a los vagones */
+	assert.equals(100, pasajeros1.capacidadPasajeros())
+	assert.equals(41, pasajeros2.capacidadPasajeros())
+	assert.equals(0, carga1.capacidadPasajeros())
+	assert.equals(24, dormitorio1.capacidadPasajeros())
+	
+	assert.equals(10300, pasajeros1.pesoMaximo())
+	assert.equals(6080, pasajeros2.pesoMaximo())
+	assert.equals(6300, carga1.pesoMaximo())
+	assert.equals(7120, dormitorio1.pesoMaximo())
+	
+	assert.equals(300, pasajeros1.cargaMaxima())
+	assert.equals(800, pasajeros2.cargaMaxima())
+	assert.equals(4800, carga1.cargaMaxima())
+	assert.equals(1200, dormitorio1.cargaMaxima())
+	
+	assert.that(pasajeros1.tieneBanio())
+	assert.notThat(pasajeros2.tieneBanio())
+	assert.notThat(carga1.tieneBanio())
+	assert.that(dormitorio1.tieneBanio())
+	
+	/*Test a la formación antes del mantenimiento*/
+	assert.equals(165, formacion1.capacidadMaxDePasajeros())
+	assert.equals(1, formacion1.vagonesPopulares())
+	assert.notThat(formacion1.esFormacionCarguera())
+	assert.equals(4220, formacion1.dispersionDePesos())
+	assert.equals(2, formacion1.cantidadDeBanios())
+	
+	/*Test a la formación después del mantenimiento */
+	formacion1.mantenimiento()
+	
+	assert.equals(180, formacion1.capacidadMaxDePasajeros())
+	assert.equals(2, formacion1.vagonesPopulares())
+	assert.notThat(formacion1.esFormacionCarguera())
+	assert.equals(4000, formacion1.dispersionDePesos())
+	assert.equals(2, formacion1.cantidadDeBanios())
+	
+	
+	
+	
+	
+	
+
+}

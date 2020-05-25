@@ -25,7 +25,7 @@ class VagonDePasajeros {
 	method setTieneBanio() {
 		tieneBanio = !tieneBanio
 	}
-	method setEstaOrdenado() {
+	method setOrdenar() {
 		estaOrdenado = !estaOrdenado
 	}
 	method capacidadPasajeros() {
@@ -53,6 +53,16 @@ class VagonDePasajeros {
 	method pesoMaximo() {
 		return (self.capacidadPasajeros() * 80) + self.cargaMaxima() + 2000   
 	}
+	method mantener() {
+		if (not estaOrdenado) {
+			self.setOrdenar()
+		}
+		else {
+		}
+	}
+	method esDePasajeros() {
+		return true
+	}
 }
 
 class VagonDeCarga {
@@ -68,11 +78,23 @@ class VagonDeCarga {
 	method cargaMaxima() {
 		return cargaMaxima - (maderasSueltas * 400)
 	}
+	method capacidadPasajeros() {
+		return 0
+	}
+	method tieneBanio() {
+		return false
+	}
 	method maderasSueltas() {
 		return maderasSueltas
 	}
 	method pesoMaximo() {
 		return self.cargaMaxima() + 1500
+	}
+	method mantener() {
+		0.max(maderasSueltas -2)
+	}
+	method esDePasajeros() {
+		return false
 	}
 }
 
@@ -103,6 +125,11 @@ class VagonDormitorio {
 	}
 	method pesoMaximo() {
 		return 4000 + self.cargaMaxima() + (80 * self.capacidadPasajeros())				
+	}
+	method mantener() {
+	}
+	method esDePasajeros() {
+		return true
 	}
 }	
 	
